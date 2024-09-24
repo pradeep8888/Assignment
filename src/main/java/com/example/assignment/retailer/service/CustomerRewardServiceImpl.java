@@ -45,17 +45,14 @@ public class CustomerRewardServiceImpl implements CustomerRewardService {
 		{
 			String customer = entry.getKey();
 			List<Transcations> transactions = entry.getValue();
-			customerName2= transactions.get(0).getCustomerName();
-			
-			Map<String, List<Transcations>> transactionOfMonth = transactions.stream().collect(Collectors.groupingBy(x->x.getTransactionDate().getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH)));
-			
+			customerName2= transactions.get(0).getCustomerName();			
+			Map<String, List<Transcations>> transactionOfMonth = transactions.stream().collect(Collectors.groupingBy(x->x.getTransactionDate().getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH)));		
 			for(Map.Entry<String, List<Transcations>> monthEntry:transactionOfMonth.entrySet())
 			{
 				String month = monthEntry.getKey();
 				List<Transcations> monthTranscations = monthEntry.getValue();
 				
 				sum= monthTranscations.stream().mapToInt(this::calculatePoint).sum();
-
 				customerMap.put(month,sum);
 	
 			}
@@ -103,7 +100,7 @@ public class CustomerRewardServiceImpl implements CustomerRewardService {
 	}
 	
 	
-	private int calculatePoint(Transcations transaction) {
+	public int calculatePoint(Transcations transaction) {
 		double amount = transaction.getAmount();
 		int point = 0;
 		if (amount > 100) {
