@@ -1,16 +1,13 @@
 package com.example.assignment.retailer.model;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
-import jakarta.persistence.Id;
-
 
 public class Customer {
 
 	private String customerName;
-	
-	private Map<String,Integer> monthlyPoints = new HashMap<>();
+
+	private Map<String, Integer> monthlyPoints = new HashMap<>();
 
 	public Customer(String customerName, Map<String, Integer> monthlyPoints) {
 		super();
@@ -18,12 +15,9 @@ public class Customer {
 		this.monthlyPoints = monthlyPoints;
 	}
 
-
 	public Customer() {
 		super();
 	}
-
-
 
 	public String getCustomerName() {
 		return customerName;
@@ -40,8 +34,5 @@ public class Customer {
 	public void setMonthlyPoints(Map<String, Integer> monthlyPoints) {
 		this.monthlyPoints = monthlyPoints;
 	}
-	
-	
-	
 
 }

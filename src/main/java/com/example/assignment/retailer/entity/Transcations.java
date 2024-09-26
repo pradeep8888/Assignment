@@ -1,6 +1,5 @@
 package com.example.assignment.retailer.entity;
 
-
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
@@ -19,7 +18,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "transcations")
 public class Transcations {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -74,7 +72,4 @@ public class Transcations {
 		super();
 	}
 
-	
-	
-	
 }

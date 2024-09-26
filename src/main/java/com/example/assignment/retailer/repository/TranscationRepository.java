@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.assignment.retailer.entity.Transcations;
 
-public interface TranscationRepository extends JpaRepository<Transcations, Long>{
+public interface TranscationRepository extends JpaRepository<Transcations, Long> {
 
-	 public List<Transcations> findByCustomerName(String name);
+	public List<Transcations> findByCustomerName(String name);
 }
