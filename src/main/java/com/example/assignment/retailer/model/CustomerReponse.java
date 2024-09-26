@@ -3,6 +3,9 @@ package com.example.assignment.retailer.model;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ * Data model for All Customer response in calculated monthly earned points
+ * */
 public class CustomerReponse {
 
 	private String customerName;

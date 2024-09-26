@@ -20,30 +20,33 @@ import com.example.assignment.retailer.service.CustomerRewardService;
 @RestController
 public class RewardPointsController {
 
-	@Autowired
-	private TranscationRepository transcationrepository;
 
 	@Autowired
 	private CustomerRewardService customerRewardService;
 
+	/* 
+	 * This api is adding three month data transactions
+	 * */ 
 	@PostMapping("/addData")
 	public ResponseEntity<String> insertThreeMonthAmountInDB() {
+		String response = null;
 		try {
-			transcationrepository.save(new Transcations(14l, "PraveenK", LocalDate.of(2024, 7, 5), 70));
-			transcationrepository.save(new Transcations(14l, "PraveenK", LocalDate.of(2024, 6, 25), 70));
-			transcationrepository.save(new Transcations(13l, "AvinashM", LocalDate.of(2024, 5, 20), 100));
-			transcationrepository.save(new Transcations(11l, "PradeepA", LocalDate.of(2024, 5, 15), 120));
-			transcationrepository.save(new Transcations(12l, "PrashantJ", LocalDate.of(2024, 6, 10), 159));
-			transcationrepository.save(new Transcations(13l, "AvinashM", LocalDate.of(2024, 5, 25), 130));
-			transcationrepository.save(new Transcations(14l, "PraveenK", LocalDate.of(2024, 5, 15), 120));
+			
+			response = customerRewardService.addData();
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-			return ResponseEntity.badRequest().body("Unable to add Data");
+			return ResponseEntity.badRequest().body(response);
 		}
-		return ResponseEntity.ok("Successfuly Added Data");
+		return ResponseEntity.ok(response);
 	}
 
+	/*
+	 * In this Get API we are calling specific customer and there calculated points on Monthly basis 
+	 * for the name of argument we need to pass then we can get info about customer
+	 * 
+	 *  */
 	@GetMapping("/getCustomer/{name}")
 	public ResponseEntity<Customer> getCustomerTranscations(@PathVariable String name) {
 
@@ -51,6 +54,10 @@ public class RewardPointsController {
 		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 	}
 
+	/*
+	 * In This Get API we are fetching all customer information about customer with calculated rewards points earned
+	 * from retailer and it will fetch all customer with his month basis calculated reward points
+	 * */
 	@GetMapping("/getAllCustomer")
 	public ResponseEntity<List<CustomerReponse>> getAllCustomer() {
 		List<CustomerReponse> allCustomer = customerRewardService.calculateCustomerRewardPoints();

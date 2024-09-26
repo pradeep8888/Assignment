@@ -2,7 +2,9 @@ package com.example.assignment.retailer.model;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
+ * Data model for customer for specific customer response
+ * */
 public class Customer {
 
 	private String customerName;

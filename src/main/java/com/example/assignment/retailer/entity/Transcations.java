@@ -10,7 +10,8 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/*
+ * Entity Data Object model used to store Table elements into the Database Table name is transactions */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
