@@ -27,15 +27,21 @@ public class RewardPointsController {
 	private CustomerRewardService customerRewardService;
 
 	@PostMapping("/addData")
-	public String insertThreeMonthAmountInDB() {
-		transcationrepository.save(new Transcations(14l, "PraveenK", LocalDate.of(2024, 7, 5), 70));
-		transcationrepository.save(new Transcations(14l, "PraveenK", LocalDate.of(2024, 6, 25), 70));
-		transcationrepository.save(new Transcations(13l, "AvinashM", LocalDate.of(2024, 5, 20), 100));
-		transcationrepository.save(new Transcations(11l, "PradeepA", LocalDate.of(2024, 5, 15), 120));
-		transcationrepository.save(new Transcations(12l, "PrashantJ", LocalDate.of(2024, 6, 10), 159));
-		transcationrepository.save(new Transcations(13l, "AvinashM", LocalDate.of(2024, 5, 25), 130));
-		transcationrepository.save(new Transcations(14l, "PraveenK", LocalDate.of(2024, 5, 15), 120));
-		return "Data saved in db";
+	public ResponseEntity<String> insertThreeMonthAmountInDB() {
+		try {
+			transcationrepository.save(new Transcations(14l, "PraveenK", LocalDate.of(2024, 7, 5), 70));
+			transcationrepository.save(new Transcations(14l, "PraveenK", LocalDate.of(2024, 6, 25), 70));
+			transcationrepository.save(new Transcations(13l, "AvinashM", LocalDate.of(2024, 5, 20), 100));
+			transcationrepository.save(new Transcations(11l, "PradeepA", LocalDate.of(2024, 5, 15), 120));
+			transcationrepository.save(new Transcations(12l, "PrashantJ", LocalDate.of(2024, 6, 10), 159));
+			transcationrepository.save(new Transcations(13l, "AvinashM", LocalDate.of(2024, 5, 25), 130));
+			transcationrepository.save(new Transcations(14l, "PraveenK", LocalDate.of(2024, 5, 15), 120));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			return ResponseEntity.badRequest().body("Unable to add Data");
+		}
+		return ResponseEntity.ok("Successfuly Added Data");
 	}
 
 	@GetMapping("/getCustomer/{name}")
