@@ -60,8 +60,7 @@ class RewardPointsControllerTest {
 		mockMvc.perform(get("/getAllCustomer")
 		.contentType(MediaType.APPLICATION_JSON)
 		.content(transcationJson))
-		.andExpect(status().isOk());
-		
+		.andExpect(status().isOk());	
 	}
 
 }

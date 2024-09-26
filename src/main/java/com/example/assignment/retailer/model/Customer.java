@@ -18,6 +18,13 @@ public class Customer {
 		this.monthlyPoints = monthlyPoints;
 	}
 
+
+	public Customer() {
+		super();
+	}
+
+
+
 	public String getCustomerName() {
 		return customerName;
 	}
