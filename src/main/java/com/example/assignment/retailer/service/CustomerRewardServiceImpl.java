@@ -34,32 +34,40 @@ public class CustomerRewardServiceImpl implements CustomerRewardService {
 	
 	@Override
 	public Customer getCustomerTranscations(String customerName) {
-		// TODO Auto-generated method stub
+		try {
+			if(customerName.isBlank() || customerName==null)
+			{
+				throw new NullPointerException("Customer name is Empty");
+			}
+
 		List<Transcations> customerData = transcationrepository.findByCustomerName(customerName);
 		int sum =0;
-		String customerName2=null;
+		Customer response=null;
 		Map<String,Integer> customerMap = new HashMap<>();
 		
 		Map<String, List<Transcations>> transctionsOfCustomer = customerData.stream().collect(Collectors.groupingBy(Transcations::getCustomerName));
 		for(Map.Entry<String,List<Transcations>> entry:transctionsOfCustomer.entrySet())
 		{
 			String customer = entry.getKey();
-			List<Transcations> transactions = entry.getValue();
-			customerName2= transactions.get(0).getCustomerName();			
+			List<Transcations> transactions = entry.getValue();			
 			Map<String, List<Transcations>> transactionOfMonth = transactions.stream().collect(Collectors.groupingBy(x->x.getTransactionDate().getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH)));		
 			for(Map.Entry<String, List<Transcations>> monthEntry:transactionOfMonth.entrySet())
 			{
 				String month = monthEntry.getKey();
-				List<Transcations> monthTranscations = monthEntry.getValue();
-				
+				List<Transcations> monthTranscations = monthEntry.getValue();			
 				sum= monthTranscations.stream().mapToInt(this::calculatePoint).sum();
 				customerMap.put(month,sum);
 	
 			}
 		}
-		Customer c= new Customer(customerName2, customerMap);
+		response.setCustomerName(customerName);
+		response.setMonthlyPoints(customerMap);
+		return response;
 		
-		return c;
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 	

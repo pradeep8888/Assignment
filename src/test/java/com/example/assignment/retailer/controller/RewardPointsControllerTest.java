@@ -30,6 +30,7 @@ class RewardPointsControllerTest {
 	private ObjectMapper objectMapper;
 	
 	private List<Transcations> transactions;
+	
 	@BeforeEach
 	void setup()
 	{
@@ -51,6 +52,7 @@ class RewardPointsControllerTest {
 		.content(transcationJson))
 		.andExpect(status().isOk());
 	}
+	
 	@Test
 	public void getAllCustomerTest() throws Exception
 	{
