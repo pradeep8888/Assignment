@@ -7,3 +7,85 @@
                   -2 points for every dollar spent over $100 in each transaction<br>
                   -plus 1 point for every dollar spent between $50 and $100 in each transaction.<br> 
                   {e.g. a $120 purchase = 2x$20 + 1x$50 = 90 points}
+
+                  <b>APIs Written by pradeep.andhare</b>
+1>In this API Adding the data into database for temporary purpose  
+URL -> http://localhost:8080/addData/
+<br>
+#sample data
+```
+        new Transcations(14l, "PraveenK", LocalDate.of(2024, 7, 5), 70),
+				new Transcations(14l, "PraveenK", LocalDate.of(2024, 6, 25), 70),
+				new Transcations(11l, "PradeepA", LocalDate.of(2024, 5, 15), 120),
+				new Transcations(12l, "PrashantJ", LocalDate.of(2024, 6, 10), 159),
+				new Transcations(13l, "AvinashM", LocalDate.of(2024, 5, 25), 130),
+				new Transcations(14l, "PraveenK", LocalDate.of(2024, 5, 15), 120));
+```
+
+2> In this API fetching the specific Customer details with calculated earned points based on monthly basis<br>
+URL -> http://localhost:8080/getCustomer/PraveenK
+<br>
+Input:need to call get API with argument->"PraveenK" (which is a name of customer based on that it will fetch information of that customer)<br>
+Output:
+```{
+    "customerName": "PraveenK ",
+    "monthlyPoints": {
+        "June": 20,
+        "May": 90,
+        "July": 20
+    }
+}
+```
+
+3>In this API we are fetching all customer details which can return calculated earned points on monthly basis<br>
+URL -> http://localhost:8080/getAllCustomer
+Input: need to call get API without argument
+Output:
+```
+[
+    {
+        "customerName": "PraveenK",
+        "monthlyPoints": {
+            "July": 20
+        },
+        "total": 20
+    },
+    {
+        "customerName": "PraveenK",
+        "monthlyPoints": {
+            "June": 20
+        },
+        "total": 20
+    },
+    {
+        "customerName": "PradeepA",
+        "monthlyPoints": {
+            "May": 90
+        },
+        "total": 90
+    },
+    {
+        "customerName": "PrashantJ",
+        "monthlyPoints": {
+            "June": 168
+        },
+        "total": 168
+    },
+    {
+        "customerName": "AvinashM",
+        "monthlyPoints": {
+            "May": 110
+        },
+        "total": 110
+    },
+    {
+        "customerName": "PraveenK",
+        "monthlyPoints": {
+            "May": 90
+        },
+        "total": 90
+    }
+]
+```
+
+
