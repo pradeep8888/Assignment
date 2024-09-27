@@ -9,6 +9,7 @@
                   {e.g. a $120 purchase = 2x$20 + 1x$50 = 90 points}
 
                   <b>APIs Written by pradeep.andhare</b>
+#Post Request		  
 1>In this API Adding the data into database for temporary purpose  
 URL -> http://localhost:8080/addData/
 <br>
@@ -21,7 +22,7 @@ URL -> http://localhost:8080/addData/
 				new Transcations(13l, "AvinashM", LocalDate.of(2024, 5, 25), 130),
 				new Transcations(14l, "PraveenK", LocalDate.of(2024, 5, 15), 120));
 ```
-
+#GET Request
 2> In this API fetching the specific Customer details with calculated earned points based on monthly basis<br>
 URL -> http://localhost:8080/getCustomer/PraveenK
 <br>
@@ -36,7 +37,7 @@ Output:
     }
 }
 ```
-
+#GET Request
 3>In this API we are fetching all customer details which can return calculated earned points on monthly basis<br>
 URL -> http://localhost:8080/getAllCustomer
 Input: need to call get API without argument
@@ -87,5 +88,33 @@ Output:
     }
 ]
 ```
+<br>
+
+<b>Business logic and validation implemented in Service layer</b>
+<br> Method 1:
+<br><b>public String addData()</b>: In this method we are adding sample data into h2 database using Jpa repository and returning String message on successfull.
+<br> Method 2:
+<br><b>public Customer getCustomerTranscations(String customerName)</b>: In this method we are initially fetching list Transcations did from customer and then further process that records and calculate earned point from customer on monthly basis. This method is used by and #GET api for specific customer info.
+<br> Method 3:
+<br><b>public List<CustomerReponse> calculateCustomerRewardPoints()</b>: In this method we are initially fetching list Transcations did from all customer and then group them of based on customer id and then we are processing for earned point by customer on monthly basis. This method is used by and #GET api for ALl customer info.
+
+<b>#Entity</b><br>
+I have used on entity class : Transcations
+```
+	private Long id;
+	private String customerName;
+	private LocalDate transactionDate;
+	private double amount;
+```
+<b>#Model classes</b><br>
+I have used reponse model classes as:<br>
+a>Customer<br>
+b>CustomerReponse
+
+<b>#Repository</b><br>
+I have used TranscationRepository which extends JpaRepository that helps us for data base operation performed by JPA<br>
+
+
+
 
 
