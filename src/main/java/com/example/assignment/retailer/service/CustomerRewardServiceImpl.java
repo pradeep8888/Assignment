@@ -1,3 +1,7 @@
+/*
+ * This is customerRewardService implementation class used to implement 
+ * all methods which contains method logic calculate earned points based on common and specific  
+ * */
 package com.example.assignment.retailer.service;
 
 import java.time.LocalDate;
@@ -17,7 +21,11 @@ import com.example.assignment.retailer.entity.Transcations;
 import com.example.assignment.retailer.model.Customer;
 import com.example.assignment.retailer.model.CustomerReponse;
 import com.example.assignment.retailer.repository.TranscationRepository;
-
+/**
+ * The class CustomerRewardServiceImpl
+ * @author pradeep.andhare
+ *
+ */
 @Service
 public class CustomerRewardServiceImpl implements CustomerRewardService {
 
@@ -35,15 +43,14 @@ public class CustomerRewardServiceImpl implements CustomerRewardService {
 		List<Transcations> saveAll = null;
 		try {
 			saveAll = transcationrepository.saveAll(asList);
+			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-
-		}
-		if (!saveAll.isEmpty()) {
-			return "Successfully added Data";
-		} else {
 			return "Unable to add data";
 		}
+
+		return "Successfully added Data";	
 	}
 
 	/*
@@ -128,8 +135,7 @@ public class CustomerRewardServiceImpl implements CustomerRewardService {
 
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
+			return reponse;
 		}
 		// returning all customer data in List<Transactions>
 		return reponse;
