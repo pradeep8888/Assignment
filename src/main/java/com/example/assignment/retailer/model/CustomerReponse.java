@@ -40,6 +40,13 @@ public class CustomerReponse {
 		super();
 	}
 
+	public CustomerReponse(String customerName, Map<String, Integer> monthlyPoints, int total) {
+		super();
+		this.customerName = customerName;
+		this.monthlyPoints = monthlyPoints;
+		this.total = total;
+	}
+
 	public CustomerReponse(String customerName) {
 		super();
 		this.customerName = customerName;
